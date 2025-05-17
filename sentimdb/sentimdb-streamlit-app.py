@@ -6,7 +6,7 @@ import nltk
 @st.cache_resource
 def load_nltk_data():
     nltk.download('punkt')
-    nltk.download('stopwords')
+    nltk.download('wordnet')
 
 load_nltk_data()
 
