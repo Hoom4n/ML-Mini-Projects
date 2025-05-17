@@ -3,7 +3,7 @@ import joblib
 import nltk
 
 # Load NLTK data with caching
-@st.cache_resource
+#@st.cache_resource
 def load_nltk_data():
     nltk.download('punkt')
     nltk.download('wordnet')
