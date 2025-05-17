@@ -12,7 +12,7 @@ load_nltk_data()
 
 # Load the model
 try:
-    model = joblib.load('https://github.com/Hoom4n/SentiMDB/blob/main/model/sentiment_pipeline.joblib')
+   model = joblib.load('sentiment_pipeline.joblib')
 except Exception as e:
     st.write(f"Error loading model: {e}")
     st.stop()
