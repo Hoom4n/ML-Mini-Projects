@@ -21,6 +21,8 @@ if st.button("Analyze"):
         try:
             # Get probability prediction
             probs = model.predict_proba([text])[0]
+            st.markdown(f"{probs}")
+            st.markdown(f"{model.predict([text])}")
             confidence = round(max(probs) * 100, 2)
             label = "Positive 😀" if probs[1] >= 0.5 else "Negative 😞"
 
