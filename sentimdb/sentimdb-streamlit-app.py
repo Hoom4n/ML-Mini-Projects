@@ -3,7 +3,7 @@ import joblib
 import nltk
 
 # Load NLTK data with caching
-#@st.cache_resource
+@st.cache_resource
 def load_nltk_data():
     nltk.download('punkt')
     nltk.download('wordnet')
@@ -20,7 +20,12 @@ except Exception as e:
 # App title and subtitle
 st.title("SentiMDB")
 st.write("_An End-to-End Deployment-Ready Sentiment Analysis Pipeline based on IMDb movie reviews with 91.67% prediction accuracy_")
-
+st.write(model)
+tokens = model.named_steps['textpreprocessor'].transform(["This movie was great!"])[0]
+st.write(tokens)  # Is this a list of tokens?
+vec = model.named_steps['tfidf']
+X = vec.transform(tokens)   # WRONG if `tokens` is a list of strings not joined
+st.write(X)
 # Create two columns for split layout
 col1, col2 = st.columns(2)
 
