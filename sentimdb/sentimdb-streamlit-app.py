@@ -54,9 +54,9 @@ with col2:
             # Make prediction
             try:
                 probs = model.predict_proba([text])[0]
-                st.write(odel.predict_proba([text]))
-                st.write(odel.predict_proba(["text"]))
-                st.write(odel.predict_proba(text))
+                st.write(model.predict_proba([text]))
+                st.write(model.predict_proba(["text"]))
+                st.write(model.predict_proba(text))
                 confidence = round(max(probs) * 100, 2)
                 sentiment = "Positive 😀" if probs[1] >= 0.5 else "Negative 😞"
                 st.write(sentiment)
