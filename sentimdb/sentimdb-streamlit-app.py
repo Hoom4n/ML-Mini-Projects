@@ -54,7 +54,7 @@ with col2:
                 confidence = round(max(probs) * 100, 2)
                 sentiment = "Positive 😀" if probs[1] >= 0.5 else "Negative 😞"
                 st.write(sentiment)
-
+                st.write(text)
                 st.write(f"**Prediction Confidence:** {confidence}%")
                 
                 # Show preprocessed text if checked
