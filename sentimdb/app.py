@@ -2,6 +2,10 @@ import gradio as gr
 import joblib
 import numpy as np
 
+import nltk
+nltk.download('punkt')
+nltk.download('wordnet')
+
 # Load the model
 model = joblib.load("sentiment_pipeline.joblib")
 
