@@ -35,7 +35,7 @@ with col1:
     """, unsafe_allow_html=True)
     
     # Text input
-    text = st.text_area("Type your movie review...", height=150)
+    text = st.text_area("Type your movie review...")
     
     # Checkbox for preprocessed text
     show_pre = st.checkbox("Show preprocessed text", value=True)
@@ -50,19 +50,11 @@ with col2:
         if text:
             # Make prediction
             try:
-                prediction = model.predict_proba([text])
-                if prediction[0][1] >= prediction[0][0]:
-                    sentiment = "Positive"
-                    confidence = round(prediction[0][1] * 100, 2)
-                else:
-                    sentiment = "Negative"
-                    confidence = round(prediction[0][0] * 100, 2)
-                
-                # Display results
-                if sentiment == "Positive":
-                    st.write("😀 Positive")
-                else:
-                    st.write("😞 Negative")
+                probs = model.predict_proba([text])[0]
+                confidence = round(max(probs) * 100, 2)
+                sentiment = "Positive 😀" if probs[1] >= 0.5 else "Negative 😞"
+                st.write(sentiment)
+
                 st.write(f"**Prediction Confidence:** {confidence}%")
                 
                 # Show preprocessed text if checked
