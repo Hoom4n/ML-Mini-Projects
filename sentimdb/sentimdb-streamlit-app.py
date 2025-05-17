@@ -22,19 +22,12 @@ if st.button("Analyze"):
             # Get probability prediction
             probs = model.predict_proba([text])[0]
             st.markdown(f"{probs}")
-            st.markdown(f"{model.predict([text])}")
+            #st.markdown(f"{model.predict([text])}")
             confidence = round(max(probs) * 100, 2)
             label = "Positive 😀" if probs[1] >= 0.5 else "Negative 😞"
 
             st.markdown(f"### Prediction: **{label}**")
             st.markdown(f"**Confidence:** {confidence}%")
-
-            # Preprocess text using first step of pipeline
-            first_step_name, first_transformer = model.steps[0]
-            preprocessed = first_transformer.transform([text])[0]
-
-            st.markdown("**Preprocessed Text:**")
-            st.code(preprocessed, language='text')
 
         except Exception as e:
             st.error(f"Error during prediction: {e}")
