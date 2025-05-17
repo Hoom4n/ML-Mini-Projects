@@ -20,12 +20,10 @@ except Exception as e:
 # App title and subtitle
 st.title("SentiMDB")
 st.write("_An End-to-End Deployment-Ready Sentiment Analysis Pipeline based on IMDb movie reviews with 91.67% prediction accuracy_")
-st.write(model)
+
 tokens = model.named_steps['textpreprocessor'].transform(["This movie was great!"])[0]
 st.write(tokens)  # Is this a list of tokens?
-vec = model.named_steps['tfidf']
-X = vec.transform(tokens)   # WRONG if `tokens` is a list of strings not joined
-st.write(X)
+
 # Create two columns for split layout
 col1, col2 = st.columns(2)
 
@@ -56,6 +54,9 @@ with col2:
             # Make prediction
             try:
                 probs = model.predict_proba([text])[0]
+                st.write(odel.predict_proba([text]))
+                st.write(odel.predict_proba(["text"]))
+                st.write(odel.predict_proba(text))
                 confidence = round(max(probs) * 100, 2)
                 sentiment = "Positive 😀" if probs[1] >= 0.5 else "Negative 😞"
                 st.write(sentiment)
